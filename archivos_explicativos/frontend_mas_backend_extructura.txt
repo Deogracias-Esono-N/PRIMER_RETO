@@ -1,0 +1,126 @@
+🔵 MISMO PROYECTO PERO CON VITE
+
+📁 Nueva estructura
+frontend (Vite)
+  ├── index.html
+  ├── main.js
+  └── api.js
+
+backend (PHP)
+  ├── api/
+  │    └── insertar.php
+  ├── db_conector.php
+
+
+🟢 FRONTEND (Vite)
+
+📄 index.html
+--------------------------------
+<input id="nombre">
+<input id="descri">
+<input id="precio">
+
+<button id="btn">Enviar</button>
+
+<script type="module" src="./main.js"></script>
+--------------------------------
+
+
+📄 api.js (fetch)
+--------------------------------
+export async function insertarChuche(data) {
+  const res = await fetch("http://localhost:9009/api/insertar.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  return res.json();
+}
+--------------------------------
+
+
+📄 main.js (lógica UI)
+--------------------------------
+import { insertarChuche } from "./api.js";
+
+document.getElementById("btn").addEventListener("click", async () => {
+  const nombre = document.getElementById("nombre").value;
+  const descri = document.getElementById("descri").value;
+  const precio = document.getElementById("precio").value;
+
+  const respuesta = await insertarChuche({
+    nombre,
+    descri,
+    precio
+  });
+
+  console.log(respuesta);
+});
+--------------------------------
+
+
+🔵 BACKEND (PHP API)
+
+📄 api/insertar.php
+--------------------------------
+<?php
+require "../db_conector.php";
+
+$data = json_decode(file_get_contents("php://input"), true);
+
+$nombre = $data["nombre"];
+$descri = $data["descri"];
+$precio = $data["precio"];
+
+if (!$nombre || !$descri || !$precio) {
+    echo json_encode(["ok" => false, "msg" => "Campos vacíos"]);
+    exit;
+}
+
+$sql = "INSERT INTO chuches (nombre, descri, precio)
+        VALUES (?, ?, ?)";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sss", $nombre, $descri, $precio);
+$stmt->execute();
+
+echo json_encode(["ok" => true]);
+?>
+--------------------------------
+
+
+🧠 FLUJO CON VITE
+
+Usuario
+  ↓
+Vite (5173)
+  ↓ fetch()
+PHP API (9009/api/insertar.php)
+  ↓
+db_conector.php
+  ↓
+MySQL / Aurora
+
+
+⚠️ DIFERENCIA CLAVE
+
+🟢 Antes (PHP clásico)
+Formulario → PHP → DB → recarga página
+
+🔵 Con Vite
+JS → fetch → API PHP → DB → respuesta JSON → UI dinámica
+
+
+🧠 IDEA IMPORTANTE
+
+NO has cambiado PHP
+NO has cambiado la base de datos
+SOLO has cambiado el frontend
+
+
+💬 FRASE CLAVE
+
+Vite no sustituye PHP, solo separa la interfaz del backend

@@ -1,0 +1,109 @@
+npm create vite@latest # crea la estructura base del proyecto Vite (archivos iniciales y configuración)  
+npm install            # instala todas las dependencias del proyecto desde package.json (node_modules, librerías, etc.)  
+npm run dev            # arranca el servidor de desarrollo de Vite con hot reload en localhost:5173
+
+TAILWIND CSS v4 + VITE (GUÍA COMPLETA)
+
+====================================================
+
+1. CREACIÓN DEL PROYECTO (VITE)
+
+npm create vite@latest
+→ Crea un proyecto frontend moderno con Vite
+
+npm install
+→ Instala todas las dependencias del proyecto
+
+npm run dev
+→ Inicia el servidor de desarrollo (localhost)
+
+====================================================
+
+2. INSTALACIÓN DE TAILWIND
+
+npm install -D tailwindcss @tailwindcss/vite postcss autoprefixer
+→ Instala Tailwind y el plugin necesario para Vite
+
+====================================================
+
+3. ARCHIVO CLAVE: vite.config.js
+
+Ubicación: raíz del frontend
+
+Configura Vite para usar Tailwind:
+
+import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
+
+export default defineConfig({
+  plugins: [
+    tailwindcss(),
+  ],
+});
+
+→ Este archivo es el puente entre Vite y Tailwind
+
+====================================================
+
+4. ARCHIVO CSS (IMPORTANTE)
+
+src/style.css
+
+@import "tailwindcss";
+
+→ Activa todo Tailwind automáticamente
+(base + utilities + components)
+
+====================================================
+
+5. MAIN.JS
+
+import "./style.css";
+
+→ Sin esto Tailwind NO se aplica
+
+====================================================
+
+6. HTML
+
+Ejemplo de uso:
+
+<body class="bg-red-500 text-white min-h-screen">
+
+→ Tailwind genera automáticamente el CSS
+
+====================================================
+
+7. FLUJO DE FUNCIONAMIENTO
+
+HTML → Vite → Plugin Tailwind → CSS generado → Navegador
+
+====================================================
+
+8. COMANDOS IMPORTANTES DIARIOS
+
+npm run dev
+→ Arranca el proyecto
+
+npm install
+→ Instala dependencias nuevas
+
+npm create vite@latest
+→ Crea proyecto desde cero
+
+====================================================
+
+9. IDEA CLAVE
+
+Tailwind NO funciona escribiendo CSS manual.
+
+Funciona generando estilos automáticamente a partir de clases en HTML.
+
+====================================================
+
+RESULTADO FINAL:
+
+✔ Sin CSS manual
+✔ Diseño con clases
+✔ Build automático con Vite
+✔ Sistema moderno de frontend

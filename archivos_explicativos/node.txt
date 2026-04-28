@@ -1,0 +1,36 @@
+🧠 ¿Qué es Node?
+    Node.js es un entorno que permite ejecutar JavaScript fuera del navegador, 
+    normalmente en el servidor o en herramientas de desarrollo.
+
+🟢 Explicación simple
+    👉 Antes: JavaScript solo funcionaba en el navegador (Chrome, Firefox…)
+    👉 Con Node: JavaScript también puede ejecutarse en tu ordenador o en servidores
+
+🧩 Ejemplo fácil
+    🔵 Sin Node: console.log("Hola") ❌ Solo funciona en el navegador;
+    🟢 Con Node: node app.js; ✔ Se ejecuta directamente en tu sistema operativo
+
+
+CUANDO EN EL DOCKER COMPOSE HACEMOS
+
+
+🧠 1. ¿Qué sistema operativo tiene node:20?
+Cuando usas:
+    image: node:20
+    👉 estás usando una imagen oficial basada en Linux.
+
+Normalmente es:
+    Debian (o una variante muy ligera como Debian Slim)
+
+⚙️ 2. ¿Qué lleva instalado ese contenedor?
+    🟢 Sistema base
+        Linux (Debian)
+        shell (bash/sh)
+        sistema de archivos mínimo
+
+    🟡 Aplicaciones ya instaladas
+        ✔ Node.js
+            👉 el motor para ejecutar JavaScript
+
+        ✔ npm (Node Package Manager)
+            👉 gestor de paquetes de Node

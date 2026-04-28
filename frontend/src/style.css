@@ -1,0 +1,28 @@
+/* ================================================ */
+/* -----------CODIGO QUE IMPORTA TAILWINDCSS------- */
+/* ================================================ */
+@import "tailwindcss";
+
+/* ================================================ */
+/* -----------CONFIGURACIÓN PARA LAS FUENTES------- */
+/* ================================================ */
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ===================================================== */
+/* ---CODIGO PARA IMAGENES EN MOVIMIENTR----- */
+/* ===================================================== */
+@theme {
+  --animate-float: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(6px, -4px);
+  }
+} /*FIN*/

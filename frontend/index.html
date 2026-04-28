@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <script type="module" src="/src/main.js" defer></script>
+    <title>XENIA</title>
+  </head>
+<!-- ---------------------------INICIO DEL CUERPO PRINCIPAL------------------------------ -->
+
+<!-- ===================================================== -->
+<!-- ------------------CUERPO PRINCIPAL------------------- -->
+<!-- ===================================================== -->
+<body class="h-screen flex flex-col text-black">
+
+  <!-- ============FONDO FIJO============ -->
+
+  <div class="fixed inset-0 -z-20">
+    <img src="imagenes/fondo.jpg" class="w-full h-full object-cover"/>
+  </div>
+
+  <!-- =============LOGO FIJO============ -->
+  <div class="fixed inset-0 flex items-center justify-center -z-10 pointer-events-none">
+    <img src="imagenes/logo_xenia_dreams.png" class="h-50 w-auto opacity-80 rounded-full border"/>
+  </div>
+
+  <!-- ===================================================== -->
+  <!-- -------------------ENCABEZADO------------------------ -->
+  <!-- ===================================================== -->
+
+  <header class="shrink-0 border-b border-red-500 bg-white backdrop-blur px-4 h-40 flex items-center justify-between z-10">
+
+    <!-- LOGO PEQUEÑO -->
+    <img src="imagenes/logo_xenia_dreams.png" class="h-35 w-auto rounded-full border"/>
+
+    <!-- =============NAVEGACION============ -->
+    <nav class="flex gap-6 text-blue-600 font-medium">
+      <a href="#" onclick="cambiarVista('inicio')" class="hover:text-red-300 hover:font-bold">Inicio</a>
+      <a href="#" onclick="cambiarVista('Servicios')" class="hover:text-red-300 hover:font-bold">Sercicios</a>
+      <a href="#" onclick="cambiarVista('Contacto')" class="hover:text-red-300 hover:font-bold">Contacto</a>
+    </nav>
+
+    <!-- PERFIL -->
+    <div class="relative">
+
+      <button id="perfilBtn"
+        class="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-white/10 text-black">
+
+        <img src="imagenes/agregar-usuario.png"
+             class="h-9 w-9 rounded-full border" />
+
+        <span class="text-sm">Perfil</span>
+        <span>▼</span>
+
+      </button>
+
+      <!-- DROPDOWN -->
+      <div id="menu"
+        class="hidden absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-20">
+
+        <a href="#" class="block px-4 py-2 hover:bg-green-700 hover:text-white">Temas</a>
+        <a href="#" class="block px-4 py-2 hover:bg-green-700 hover:text-white">Iniciar Sesión</a>
+        <a href="#" class="block px-4 py-2 hover:bg-green-700 hover:text-white">Registro</a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- ===================================================== -->
+  <!-- ----------------MAIN_1 (INICIO_SCROLL SOLO AQUÍ)-------------- -->
+  <!-- ===================================================== -->
+  <main id="inicio" class="flex-1 overflow-y-auto p-6">
+
+    <!-- ============ TÍTULO 1 ============== -->
+
+    <div class="rounded-lg shadow-sm flex justify-between items-center">
+      <h1 class="text-3xl md:text-4xl text-white" style="font-family: 'Luckiest Guy';">
+        DATE UNA OPORTUNIDA. . .
+      </h1>
+
+      <a href="#" onclick="cambiarVista('formulario')" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-blue-700 hover:scale-105 transition-all duration-300">
+        Rellenar formulario de viaje
+      </a>
+    </div>
+
+    <!-- ============BUSCADOR============== -->
+    <div class="w-full max-w-md mx-auto mt-10">
+
+      <div class="relative">
+        <input type="text" placeholder="Buscar..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-300" />
+      </div>
+
+    </div>
+
+    <!-- ================CONTENIDO======================= -->
+    <section class="p-6 ">
+
+      <div class="flex justify-center gap-10">
+        <a href="https://www.hotelpuertadebilbao.com/" target="_blank">
+          <img src="imagenes/pais_vasco.jpg" class=" w-80 object-cover rounded-lg border-2 border-transparent 
+            hover:border-blue-500 transition-all duration-300 animate-float" />
+        </a>
+        
+        <a href="https://fptxurdinaga.eus/" target="_blank">
+          <img src="imagenes/estudiante.jpg" class="w-80 object-cover rounded-lg border-2 border-transparent 
+            hover:border-blue-500 transition-all duration-300 animate-float" />
+        </a>
+        
+        <a href="https://www.marriott.com/es/default.mi" target="_blank">
+          <img src="imagenes/madrid.jpg" class="w-80 object-cover rounded-lg border-2 border-transparent 
+            hover:border-blue-500 transition-all duration-300 animate-float" />
+        </a>
+        
+      </div>
+
+    </section>
+
+  </main>   <!-- FIN DEL MAIN 1 -->
+
+
+  <!-- ===================================================== -->
+  <!-- ----------------MAIN_2 (FORMULARIO_SCROLL SOLO AQUÍ)-------------- -->
+  <!-- ===================================================== -->
+  <main id="formulario"  class=" hidden flex-1 overflow-y-auto p-6">
+
+    <!-- ============ TÍTULO 2 ============== -->
+
+    <div class="rounded-lg shadow-sm flex justify-between items-center">
+      <h1 class="text-3xl md:text-4xl text-white" style="font-family: 'Luckiest Guy';">
+        DATE UNA OPORTUNIDA. . .
+      </h1>
+
+      <a href="#" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-blue-700 hover:scale-105 transition-all duration-300">
+        Rellenar formulario de viaje
+      </a>
+    </div>
+
+    <!-- ============BUSCADOR============== -->
+    <div class="w-full max-w-md mx-auto mt-10">
+
+      <div class="relative">
+        <input type="text" placeholder="Buscar..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-300" />
+      </div>
+
+    </div>
+
+    <!-- ================CONTENIDO======================= -->
+    <section class="p-6 ">
+
+      <div class="flex justify-center gap-10">
+        <a href="https://www.hotelpuertadebilbao.com/" target="_blank">
+          <img src="imagenes/pais_vasco.jpg" class=" w-80 object-cover rounded-lg border-2 border-transparent 
+            hover:border-blue-500 transition-all duration-300 animate-float" />
+        </a>
+        
+        <a href="https://fptxurdinaga.eus/" target="_blank">
+          <img src="imagenes/estudiante.jpg" class="w-80 object-cover rounded-lg border-2 border-transparent 
+            hover:border-blue-500 transition-all duration-300 animate-float" />
+        </a>
+        
+        <a href="https://www.marriott.com/es/default.mi" target="_blank">
+          <img src="imagenes/madrid.jpg" class="w-80 object-cover rounded-lg border-2 border-transparent 
+            hover:border-blue-500 transition-all duration-300 animate-float" />
+        </a>
+        
+      </div>
+
+    </section>
+
+  </main>   <!-- FIN DEL MAIN 2 -->
+
+  <!-- ===================================================== -->
+  <!-- --------MAIN_3 (SERVICIOS_SCROLL SOLO AQUÍ)----- -->
+  <!-- ===================================================== -->
+  <main id="servicios" class="hidden flex-1 overflow-y-auto p-6">
+
+    <!-- ============ TÍTULO 3 ============== -->
+
+    <div class="rounded-lg shadow-sm flex justify-between items-center">
+      <h1 class="text-3xl md:text-4xl text-white" style="font-family: 'Luckiest Guy';">
+        DATE UNA OPORTUNIDA. . .
+      </h1>
+
+      <a href="#" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-blue-700 hover:scale-105 transition-all duration-300">
+        Rellenar formulario de viaje
+      </a>
+    </div>
+
+    <!-- ============BUSCADOR============== -->
+    <div class="w-full max-w-md mx-auto mt-10">
+
+      <div class="relative">
+        <input type="text" placeholder="Buscar..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-300" />
+      </div>
+
+    </div>
+
+    <!-- ================CONTENIDO======================= -->
+    <section class="p-6 ">
+
+      <div class="flex justify-center gap-10">
+        <a href="https://www.hotelpuertadebilbao.com/" target="_blank">
+          <img src="imagenes/pais_vasco.jpg" class=" w-80 object-cover rounded-lg border-2 border-transparent 
+            hover:border-blue-500 transition-all duration-300 animate-float" />
+        </a>
+        
+        <a href="https://fptxurdinaga.eus/" target="_blank">
+          <img src="imagenes/estudiante.jpg" class="w-80 object-cover rounded-lg border-2 border-transparent 
+            hover:border-blue-500 transition-all duration-300 animate-float" />
+        </a>
+        
+        <a href="https://www.marriott.com/es/default.mi" target="_blank">
+          <img src="imagenes/madrid.jpg" class="w-80 object-cover rounded-lg border-2 border-transparent 
+            hover:border-blue-500 transition-all duration-300 animate-float" />
+        </a>
+        
+      </div>
+
+    </section>
+
+  </main>   <!-- FIN DEL MAIN 3 -->
+
+
+
+
+  <!-- ===================================================== -->
+  <!-- FOOTER -->
+  <!-- ===================================================== -->
+  <footer class="shrink-0 border-t bg-white text-blue-500 text-sm p-6 text-center z-10">
+    © 2026 Xenia Dreams
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+# NODE / VITE FRONTEND
+node_modules/
+dist/
+.vite/
+
+# VARIABLES DE ENTORNO
+.env
+
+# DOCKER (opcional)
+docker-compose.override.yml
+
