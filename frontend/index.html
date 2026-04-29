@@ -37,9 +37,9 @@
 
     <!-- =============NAVEGACION============ -->
     <nav class="flex gap-6 text-blue-600 font-medium">
-      <a href="#" onclick="cambiarVista('inicio')" class="hover:text-red-300 hover:font-bold">Inicio</a>
-      <a href="#" onclick="cambiarVista('Servicios')" class="hover:text-red-300 hover:font-bold">Sercicios</a>
-      <a href="#" onclick="cambiarVista('Contacto')" class="hover:text-red-300 hover:font-bold">Contacto</a>
+      <a href="#" data-target="inicio" class="nav-link hover:text-red-300 hover:font-bold">Inicio</a>
+      <a href="#" data-target="formulario" class="nav-link hover:text-red-300 hover:font-bold">Sercicios</a>
+      <a href="#" data-target="contacto" class="nav-link hover:text-red-300 hover:font-bold">Contacto</a>
     </nav>
 
     <!-- PERFIL -->
@@ -79,12 +79,12 @@
 
     <div class="rounded-lg shadow-sm flex justify-between items-center">
       <h1 class="text-3xl md:text-4xl text-white" style="font-family: 'Luckiest Guy';">
-        DATE UNA OPORTUNIDA. . .
+        TU VIAJE COMO UN SUEÑO. . .
       </h1>
 
-      <a href="#" onclick="cambiarVista('formulario')" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-blue-700 hover:scale-105 transition-all duration-300">
+      <button data-target="formulario" class="nav-link bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-blue-700 hover:scale-105 transition-all duration-300">
         Rellenar formulario de viaje
-      </a>
+      </button>
     </div>
 
     <!-- ============BUSCADOR============== -->
@@ -123,8 +123,9 @@
 
 
   <!-- ===================================================== -->
-  <!-- ----------------MAIN_2 (FORMULARIO_SCROLL SOLO AQUÍ)-------------- -->
+  <!-- ---------MAIN_2 (FORMULARIO_SCROLL SOLO AQUÍ)-------- -->
   <!-- ===================================================== -->
+
   <main id="formulario"  class=" hidden flex-1 overflow-y-auto p-6">
 
     <!-- ============ TÍTULO 2 ============== -->
@@ -139,38 +140,7 @@
       </a>
     </div>
 
-    <!-- ============BUSCADOR============== -->
-    <div class="w-full max-w-md mx-auto mt-10">
-
-      <div class="relative">
-        <input type="text" placeholder="Buscar..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-300" />
-      </div>
-
-    </div>
-
-    <!-- ================CONTENIDO======================= -->
-    <section class="p-6 ">
-
-      <div class="flex justify-center gap-10">
-        <a href="https://www.hotelpuertadebilbao.com/" target="_blank">
-          <img src="imagenes/pais_vasco.jpg" class=" w-80 object-cover rounded-lg border-2 border-transparent 
-            hover:border-blue-500 transition-all duration-300 animate-float" />
-        </a>
-        
-        <a href="https://fptxurdinaga.eus/" target="_blank">
-          <img src="imagenes/estudiante.jpg" class="w-80 object-cover rounded-lg border-2 border-transparent 
-            hover:border-blue-500 transition-all duration-300 animate-float" />
-        </a>
-        
-        <a href="https://www.marriott.com/es/default.mi" target="_blank">
-          <img src="imagenes/madrid.jpg" class="w-80 object-cover rounded-lg border-2 border-transparent 
-            hover:border-blue-500 transition-all duration-300 animate-float" />
-        </a>
-        
-      </div>
-
-    </section>
-
+   
   </main>   <!-- FIN DEL MAIN 2 -->
 
   <!-- ===================================================== -->

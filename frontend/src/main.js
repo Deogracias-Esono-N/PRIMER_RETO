@@ -36,17 +36,32 @@ initDropdown(); // Ejecutar función
 // ----CAMBIO DE PAGINAS (SINGLE PAGE APLICATION)------
 // ====================================================
 
+// FUNCIÓN QUE CAMBIA LA EL MAIN VISIBLE (home, formulario, contacto, etc.)
 function cambiarVista(id) {
-  const secciones = document.querySelectorAll("main");
-
-  // Ocultar todas las secciones
+  const secciones = document.getElementsByTagName("main"); // Coge todos los elementos <main> de la página
+  // For que recorre todos los main y los oculta
   for (let i = 0; i < secciones.length; i++) {
-    secciones[i].classList.add("hidden");
+    secciones[i].classList.add("hidden"); 
   }
-
-  // Mostrar la sección seleccionada
-  document.getElementById(id).classList.remove("hidden");
+  document.getElementById(id).classList.remove("hidden"); // Muestra solo el main que tiene el id que hemos recibido
 }
 
+// Función que inicializa la navegación del menú
+function initNavegacion() {
+  const links = document.getElementsByClassName("nav-link"); // nos devuelve un array (clase nav-link)
+
+  // For que recorre todos los enlaces uno por uno
+  for (let i = 0; i < links.length; i++) { 
+
+    // A cada enlace le añade un evento de click
+    links[i].addEventListener("click", function (e) {
+      e.preventDefault(); // Evita que el enlace recargue o cambie de página
+      const id = this.getAttribute("data-target"); // Lee el valor del atributo data-target del enlace
+      cambiarVista(id); // Llama a la función que cambia la vista
+    });
+  }
+}
+
+initNavegacion(); //llamamos a la funcion
 
 console.log("Frontend listo 🚀");
