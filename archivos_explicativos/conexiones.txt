@@ -1,0 +1,103 @@
+================ESTRUCTURA==================
+
+Frontend → llama URL (fetch)
+PHP → recibe datos
+PHP → usa db_conector.php
+db_conector.php → conecta a AWS
+AWS → guarda datos
+
+
+
+
+
+NO EXISTE CONEXIÓN DIRECTA FRONTEND ↔ BASE DE DATOS
+
+El frontend (Vite) nunca se conecta a la BD.
+Solo envía peticiones HTTP al backend.
+
+========================
+IDEA CENTRAL
+========================
+
+Frontend NO conecta con BD
+Frontend conecta con una URL (PHP)
+
+========================
+FLUJO REAL
+========================
+
+FORMULARIO (Vite)
+  |
+  | fetch()
+  v
+BACKEND (PHP - guardar_estudiante.php)
+  |
+  | require db_conector.php
+  v
+db_conector.php (abre conexión MySQL)
+  |
+  v
+AURORA DB (AWS MySQL)
+
+========================
+TRADUCCIÓN SIMPLE
+========================
+
+NO EXISTE:
+- "Frontend se conecta a la base de datos"
+
+SÍ EXISTE:
+- "Frontend envía datos a un servidor PHP"
+
+========================
+FRONTEND (Vite)
+========================
+
+fetch("http://localhost:9999/guardar_estudiante.php", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    nombre: "Juan",
+    apellido: "Perez"
+  })
+});
+
+Esto significa:
+-> enviar datos a una URL (PHP)
+-> NO hay base de datos aquí
+
+========================
+PHP (BACKEND)
+========================
+
+1. Recibe datos:
+$data = json_decode(file_get_contents("php://input"), true);
+
+2. Carga conexión:
+require "db_conector.php";
+
+3. Guarda en BD:
+$conn->query("INSERT ...");
+
+========================
+db_conector.php
+========================
+
+Solo hace esto:
+-> abre conexión con AuroraDB
+
+NO:
+- no recibe datos
+- no guarda datos
+- no procesa formularios
+
+========================
+ANALOGÍA SIMPLE
+========================
+
+Frontend   -> Cliente (pide algo)
+PHP        -> Cajero (recibe y procesa)
+db_conector -> Teléfono interno
+AuroraDB   -> Almacén (guarda datos)
