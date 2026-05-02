@@ -6,6 +6,15 @@ PHP → usa db_conector.php
 db_conector.php → conecta a AWS
 AWS → guarda datos
 
+1. Usuario pulsa "Guardar estudiante"
+2. JS intercepta submit (preventDefault)
+3. JS hace fetch a PHP
+4. PHP usa db_conector.php
+5. db_conector conecta a AuroraDB
+6. Se guarda el alumno
+7. PHP responde JSON
+8. JS muestra alert
+
 
 
 

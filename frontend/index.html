@@ -134,78 +134,134 @@
         GESTIÓN DE VIAJE DEL ESTUDIANTE
       </h1>
     
-      <form class="space-y-6">
+      <form id="formEstudiante" class="space-y-6"> <!-- space-y-6: AÑADE SEPARACION VERTICAL ENTRE HIJOS. -->
+
       
-        <!-- GRID 2 COLUMNAS -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 gap-6">
         
-          <!-- DATOS PERSONALES -->
-          <div>
-            <label class="block mb-1 text-sm text-gray-300">Nombre</label>
-            <input type="text" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Nombre">
+          
+          <div class="text-blue-600  datos_per">
+            DATOS PERSONALES
+            <div>
+              <label class="block mb-1 text-sm text-gray-300">Nombre</label>
+              <input name="NombrePer" type="text" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Nombre">
+            </div>
+          
+            <div>
+              <label class="block mb-1 text-sm text-gray-300">Apellidos</label>
+              <input name="ApellidosPer" type="text" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Apellidos">
+            </div>
+
+            <div>
+              <label class="block mb-1 text-sm text-gray-300">Instituto de origen</label>
+              <input name="InstiOrigPer" type="text" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Centro educativo">
+            </div>
+          
+            <div>
+              <label class="block mb-1 text-sm text-gray-300">Fecha de nacimiento</label>
+              <input name="FecNacPer" type="date" class="w-full p-3 rounded-lg bg-white text-black" placeholder="dd/mm/aa">
+            </div>
+
+            <div>
+              <label class="block mb-1 text-sm text-gray-300">Tipo de alojamiento</label>
+              <select name="TipoAlojPer" class="w-full p-3 rounded-lg bg-white text-black">
+                <option>Familia anfitriona</option>
+                <option>Residencia</option>
+                <option>Hotel</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block mb-1 text-sm text-gray-300">Email</label>
+              <input name="EmailPer" type="email" class="w-full p-3 rounded-lg bg-white text-black" placeholder="correo@email.com">
+            </div>
+        
+            <div>
+              <label class="block mb-1 text-sm text-gray-300">Teléfono</label>
+              <input name="TelPer" type="tel" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Teléfono">
+            </div>
+          </div> <br>
+
+          <div class="text-blue-600 solicitud">
+            SOLICITUD
+            <!-- RECUERDA: El id, el estado, observaciones y la fecha de solicitud se autorellenan -->
+            <div>
+            <label class="block mb-1 text-sm text-gray-300">Curso Académico</label>
+              <div class="flex gap-2">
+                <input name="curso_inicio" type="number"
+                  class="w-full p-3 rounded-lg bg-white text-black"
+                  placeholder="2025">
+              
+                <input name="curso_fin" type="number"
+                  class="w-full p-3 rounded-lg bg-white text-black"
+                  placeholder="2026">
+              </div>
+            </div>
+
           </div>
-        
-          <div>
-            <label class="block mb-1 text-sm text-gray-300">Apellidos</label>
-            <input type="text" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Apellidos">
+
+          <div class="text-blue-600  institutos">
+            INSTITUTOS
+            <div>
+              <label class="block mb-1 text-sm text-gray-300 mt-4">Instituto</label>
+              <select id="instituto" name="instituto" class="w-full p-3 rounded-lg bg-white text-black">
+                <option value="">Selecciona primero una localidad</option>
+              </select>
+            </div>
+
+            <!-- <div>
+              <label class="block mb-1 text-sm text-gray-300">Email <span class="bg-white text-red-500">(*No rellenar)</span></label>
+              <input name="EmailInst" type="text" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Ej: correo@email.com">
+            </div>
+
+            <div>
+              <label class="block mb-1 text-sm text-gray-300">Tel <span class="bg-white text-red-500">(*No rellenar)</span></label>
+              <input name="TelInst" type="number" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Ej: 634 733 775">
+            </div> <br> -->
+
           </div>
-        
-          <div>
-            <label class="block mb-1 text-sm text-gray-300">Edad</label>
-            <input type="number" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Edad">
-          </div>
-        
-          <div>
-            <label class="block mb-1 text-sm text-gray-300">Fecha de nacimiento</label>
-            <input type="date" class="w-full p-3 rounded-lg bg-white text-black">
-          </div>
-        
-          <!-- CONTACTO -->
-          <div>
-            <label class="block mb-1 text-sm text-gray-300">Email</label>
-            <input type="email" class="w-full p-3 rounded-lg bg-white text-black" placeholder="correo@email.com">
-          </div>
-        
-          <div>
-            <label class="block mb-1 text-sm text-gray-300">Teléfono</label>
-            <input type="tel" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Teléfono">
-          </div>
-        
-          <!-- INSTITUTO -->
-          <div>
-            <label class="block mb-1 text-sm text-gray-300">Instituto de origen</label>
-            <input type="text" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Centro educativo">
-          </div>
-        
-          <div>
-            <label class="block mb-1 text-sm text-gray-300">Curso</label>
-            <input type="text" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Ej: 2º Bachillerato">
-          </div>
-        
-          <!-- VIAJE -->
-          <div>
-            <label class="block mb-1 text-sm text-gray-300">Destino</label>
-            <input type="text" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Ciudad o país">
-          </div>
-        
-          <div>
-            <label class="block mb-1 text-sm text-gray-300">Fecha de salida</label>
-            <input type="date" class="w-full p-3 rounded-lg bg-white text-black">
-          </div>
-        
-          <div>
-            <label class="block mb-1 text-sm text-gray-300">Fecha de regreso</label>
-            <input type="date" class="w-full p-3 rounded-lg bg-white text-black">
-          </div>
-        
-          <!-- HOSPEDAJE -->
-          <div>
-            <label class="block mb-1 text-sm text-gray-300">Tipo de alojamiento</label>
-            <select class="w-full p-3 rounded-lg bg-white text-black">
-              <option>Familia anfitriona</option>
-              <option>Residencia</option>
-              <option>Hotel</option>
-            </select>
+
+          <div class="text-blue-600  grado">
+            GRADO
+            <div>
+              <label class="block mb-1 text-sm text-gray-300">Nombre del curso o grado FP</label>
+              <input name="NomGradoCurso" type="text" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Ej: 2º Bachillerato, Telecomunicaciones">
+            </div>
+          
+            <div>
+              <label class="block mb-1 text-sm text-gray-300">Nivel (Solo si FPGS o FPGM)</label>
+              <input name="NivelGrado" type="text" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Ej: Grado superior">
+            </div>
+          
+          </div> <br>
+
+          <div class="text-blue-600 localidad">
+            LOCALIDAD
+            <div>
+              <label class="block mb-1 text-sm text-gray-300">Nombre</label>
+                <select  id="localidad" name="localidad" class="w-full p-3 rounded-lg bg-white text-black">
+                  <option value="valencia">Valencia ciudad</option>
+                  <option value="torrent">Torrent</option>
+                  <option value="alcala">Alcalá de Henares</option>
+                  <option value="torrejon">Torrejon de Ardoz</option>
+                  <option value="bilbao">Bilbao</option>
+                  <option value="getxo">Getxo</option>
+                  <option value="jaen">Jaén</option>
+                </select>
+            </div>
+
+            <div>
+              <label class="block mb-1 text-sm text-gray-300">CodPostal</label>
+              <input name="CodPost" type="number" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Ej: 48441">
+            </div>
+          </div> <br>
+
+          <div class="text-blue-600 comunidad">
+            COMUNIDAD AUTONOMA
+            <div>
+              <label class="block mb-1 text-sm text-gray-300">Nombre</label>
+              <input name="NomComAuton" type="text" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Ej: Bilbao">
+            </div>
           </div>
         
         </div>
