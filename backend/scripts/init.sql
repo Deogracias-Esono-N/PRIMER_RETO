@@ -21,8 +21,8 @@ CREATE TABLE localidad (
   CodLoc INT AUTO_INCREMENT PRIMARY KEY,
   Nombre VARCHAR(100) NOT NULL,
   CodPostal VARCHAR(10),
-  CodComun INT,
-  FOREIGN KEY (CodComun) REFERENCES comunidad_autonoma(CodComun)
+  CodComun INT NOT NULL,
+  FOREIGN KEY (CodComun) REFERENCES comunidad_autonoma(CodComun) ON DELETE RESTRICT
 );
 
 -- =====================================
@@ -33,8 +33,8 @@ CREATE TABLE instituto (
   Nombre VARCHAR(150) NOT NULL,
   Email VARCHAR(150),
   Tel VARCHAR(20),
-  CodLoc INT,
-  FOREIGN KEY (CodLoc) REFERENCES localidad(CodLoc)
+  CodLoc INT NOT NULL,
+  FOREIGN KEY (CodLoc) REFERENCES localidad(CodLoc) ON DELETE RESTRICT
 );
 
 -- =====================================
@@ -43,7 +43,7 @@ CREATE TABLE instituto (
 CREATE TABLE grado (
   CodGrado INT AUTO_INCREMENT PRIMARY KEY,
   Nombre VARCHAR(150) NOT NULL,
-  Nivel VARCHAR(50)
+  Nivel VARCHAR(50) NOT NULL
 );
 
 -- =====================================
@@ -51,9 +51,9 @@ CREATE TABLE grado (
 -- =====================================
 CREATE TABLE estudiante (
   CodEstudiante INT AUTO_INCREMENT PRIMARY KEY,
-  Nombre VARCHAR(100) NOT NULL,
-  Apellidos VARCHAR(150) NOT NULL,
-  Email VARCHAR(150),
+  Nombre VARCHAR(30) NOT NULL,
+  Apellidos VARCHAR(40) NOT NULL,
+  Email VARCHAR(50),
   Tel VARCHAR(20),
   FecN DATE
 );
@@ -63,16 +63,19 @@ CREATE TABLE estudiante (
 -- =====================================
 CREATE TABLE solicitud (
   CodSol INT AUTO_INCREMENT PRIMARY KEY,
+  CodEstudiante INT NOT NULL,
+  CodInst INT NOT NULL,
+  CodGrado INT NOT NULL,
   Curso VARCHAR(20),
   FecSol TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   Estado VARCHAR(50) DEFAULT 'pendiente',
   Observaciones TEXT,
 
-  CodEstudiante INT,
-  CodInst INT,
-  CodGrado INT,
-
-  FOREIGN KEY (CodEstudiante) REFERENCES estudiante(CodEstudiante),
-  FOREIGN KEY (CodInst) REFERENCES instituto(CodInst),
-  FOREIGN KEY (CodGrado) REFERENCES grado(CodGrado)
+  FOREIGN KEY (CodEstudiante) REFERENCES estudiante(CodEstudiante) ON DELETE CASCADE,
+  FOREIGN KEY (CodGrado) REFERENCES grado(CodGrado) ON DELETE RESTRICT,
+  FOREIGN KEY (CodInst) REFERENCES instituto(CodInst) ON DELETE RESTRICT
 );
+
+
+
+

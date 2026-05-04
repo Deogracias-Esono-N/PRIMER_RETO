@@ -10,5 +10,6 @@
 ## Backend
 - 30-04-2026: Diseño de la base de datos (Universo de discurso).
 - 30-04-2026: organizacion de las conexiones (PHP-BBDD)
-- 2-05-2026: Diseño de base de datos (Esquema Entidad-Relacion) (LINK: )
-- 2-05-2026: organizacion de las conexiones 
+- 2-05-2026: Diseño de base de datos (Esquema Entidad-Relacion y modelo relacional) (LINK: )
+- 2-05-2026: organizacion de las conexiones
+- 3-05-2026: Creacion de la base de datos en Heidisql.
