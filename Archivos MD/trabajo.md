@@ -13,3 +13,5 @@
 - 2-05-2026: Diseño de base de datos (Esquema Entidad-Relacion y modelo relacional) (LINK: )
 - 2-05-2026: organizacion de las conexiones
 - 3-05-2026: Creacion de la base de datos en Heidisql.
+- 4-05-2026: Editar guardar.php para ver si en verdad la se guarda el formulario.
+- 4-05-2026: Pruba de conexion backend correcta.

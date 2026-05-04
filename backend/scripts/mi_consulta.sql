@@ -2,9 +2,10 @@
 -- RESET TOTAL DE BASE DE DATOS
 -- =====================================
 
-DROP DATABASE IF EXISTS gestionviajes;
-CREATE DATABASE gestionviajes;
-USE gestionviajes;
+DROP DATABASE IF EXISTS viajesgestion;
+DROP DATABASE IF EXISTS viajesgestion;
+CREATE DATABASE viajesgestion;
+USE viajesgestion;
 
 -- =====================================
 -- COMUNIDAD AUTONOMA
@@ -66,10 +67,7 @@ CREATE TABLE solicitud (
   CodEstudiante INT NOT NULL,
   CodInst INT NOT NULL,
   CodGrado INT NOT NULL,
-
-  CursoInicio YEAR NOT NULL,
-  CursoFin YEAR NOT NULL,
-
+  Curso VARCHAR(20),
   FecSol TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   Estado VARCHAR(50) DEFAULT 'pendiente',
   Observaciones TEXT,
@@ -79,6 +77,8 @@ CREATE TABLE solicitud (
   FOREIGN KEY (CodInst) REFERENCES instituto(CodInst) ON DELETE RESTRICT
 );
 
-
+CREATE USER 'appuser'@'%' IDENTIFIED BY 'S_adamjusein321';
+GRANT ALL PRIVILEGES ON gestionviajes.* TO 'appuser'@'%';
+FLUSH PRIVILEGES;
 
 

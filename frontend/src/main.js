@@ -83,26 +83,39 @@ function initFormulario() {
     // 5. Recogemos los datos del formulario
     // IMPORTANTE: esto funciona porque los inputs tienen atributo "name"
 
-    const data = {
-      nombre: form.NombrePer.value,
-      apellido: form.ApellidosPer.value,
-      email: form.EmailPer.value,
-      telefono: form.TelPer.value,
-      fecha_nacimiento: form.FecNacPer.value,
-      tipo_alojamiento: form.TipoAlojPer.value,
-      curso_inicio: form.curso_inicio.value,
-      curso_fin: form.curso_fin.value,
-      instituto: form.instituto.value,
-      localidad: form.localidad.value,
-      cod_postal: form.CodPost.value,
-      grado: form.NomGradoCurso.value,
-      nivel: form.NivelGrado.value
-    };
+const data = {
+  // 👤 DATOS PERSONALES
+  NombrePer: form.NombrePer.value,
+  ApellidosPer: form.ApellidosPer.value,
+  InstiOrigPer: form.InstiOrigPer.value,
+  FecNacPer: form.FecNacPer.value,
+  TipoAlojPer: form.TipoAlojPer.value,
+  EmailPer: form.EmailPer.value,
+  TelPer: form.TelPer.value,
+
+  // 📅 SOLICITUD
+  curso_inicio: form.curso_inicio.value,
+  curso_fin: form.curso_fin.value,
+
+  // 🏫 INSTITUTO
+  instituto: form.instituto.value,
+
+  // 🏙️ LOCALIDAD
+  NomLocalidad: form.NomLocalidad.value,
+  CodPost: form.CodPost.value,
+
+  // 🌍 COMUNIDAD
+  NomComAuton: form.NomComAuton.value,
+
+  // 🎓 GRADO
+  NomGradoCurso: form.NomGradoCurso.value,
+  NivelGrado: form.NivelGrado.value
+};
 
     try {
 
       // 6. Enviamos los datos al backend PHP usando fetch
-      const res = await fetch("http://localhost:9999/guardar_estudiante.php", {
+      const res = await fetch("http://localhost:9999/api/registro.php", {
 
         method: "POST", // tipo de petición
 
@@ -138,71 +151,73 @@ initFormulario();
 
 
 // ====================================================
-// -----------SELECCION DE INSTITUTOS (ALUMNO)----------------
+// -----------SELECCION DE INSTITUTOS (ALUMNO)---------
 // ====================================================
 document.addEventListener("DOMContentLoaded", () => {
 
-  const institutos = {
-    valencia: [
-      "IES Lluís Vives",
-      "IES Benlliure",
-      "IES Sorolla"
-    ],
+  // ====================================================
+  // DATOS INSTITUTOS → LOCALIDAD + COMUNIDAD
+  // ====================================================
+  const datosInstitutos = {
+    "IES Lluís Vives": { localidad: "valencia", comunidad: "Comunitat Valenciana" },
+    "IES Benlliure": { localidad: "valencia", comunidad: "Comunitat Valenciana" },
+    "IES Sorolla": { localidad: "valencia", comunidad: "Comunitat Valenciana" },
 
-    torrent: [
-      "IES La Marxadella",
-      "IES Tirant lo Blanc",
-      "IES Serra Perenxisa"
-    ],
+    "IES La Marxadella": { localidad: "torrent", comunidad: "Comunitat Valenciana" },
+    "IES Tirant lo Blanc": { localidad: "torrent", comunidad: "Comunitat Valenciana" },
+    "IES Serra Perenxisa": { localidad: "torrent", comunidad: "Comunitat Valenciana" },
 
-    alcala: [
-      "IES Alonso de Avellaneda",
-      "IES Cardenal Cisneros",
-      "IES Antonio Machado"
-    ],
+    "IES Alonso de Avellaneda": { localidad: "alcala", comunidad: "Comunidad de Madrid" },
+    "IES Cardenal Cisneros": { localidad: "alcala", comunidad: "Comunidad de Madrid" },
+    "IES Antonio Machado": { localidad: "alcala", comunidad: "Comunidad de Madrid" },
 
-    torrejon: [
-      "IES Isaac Peral",
-      "IES León Felipe",
-      "IES Valle Inclán"
-    ],
+    "IES Isaac Peral": { localidad: "torrejon", comunidad: "Comunidad de Madrid" },
+    "IES León Felipe": { localidad: "torrejon", comunidad: "Comunidad de Madrid" },
+    "IES Valle Inclán": { localidad: "torrejon", comunidad: "Comunidad de Madrid" },
 
-    bilbao: [
-      "IES Miguel de Unamuno",
-      "IES Txurdinaga Behekoa",
-      "IES Botikazar"
-    ],
+    "IES Miguel de Unamuno": { localidad: "bilbao", comunidad: "País Vasco" },
+    "IES Txurdinaga Behekoa": { localidad: "bilbao", comunidad: "País Vasco" },
+    "IES Botikazar": { localidad: "bilbao", comunidad: "País Vasco" },
 
-    getxo: [
-      "IES Aixerrota",
-      "IES Artaza-Romo",
-      "IES Julio Caro Baroja"
-    ],
+    "IES Aixerrota": { localidad: "getxo", comunidad: "País Vasco" },
+    "IES Artaza-Romo": { localidad: "getxo", comunidad: "País Vasco" },
+    "IES Julio Caro Baroja": { localidad: "getxo", comunidad: "País Vasco" },
 
-    jaen: [
-      "IES Virgen del Carmen",
-      "IES Auringis",
-      "IES Jabalcuz"
-    ]
+    "IES Virgen del Carmen": { localidad: "jaen", comunidad: "Andalucía" },
+    "IES Auringis": { localidad: "jaen", comunidad: "Andalucía" },
+    "IES Jabalcuz": { localidad: "jaen", comunidad: "Andalucía" }
   };
 
-  const selectLocalidad = document.getElementById("localidad");
+  // ====================================================
+  // ELEMENTOS DEL DOM
+  // ====================================================
   const selectInstituto = document.getElementById("instituto");
+  const inputLocalidad = document.getElementById("localidadAuto");
+  const inputComunidad = document.getElementById("comunidadAuto");
 
-  selectLocalidad.addEventListener("change", function () {
+  if (!selectInstituto) return;
 
-    const valor = this.value;
+  // ====================================================
+  // CARGAR INSTITUTOS EN SELECT
+  // ====================================================
+  Object.keys(datosInstitutos).forEach(nombre => {
+    const option = document.createElement("option");
+    option.value = nombre;
+    option.textContent = nombre;
+    selectInstituto.appendChild(option);
+  });
 
-    selectInstituto.innerHTML = "";
+  // ====================================================
+  // AUTO RELLENO LOCALIDAD + COMUNIDAD
+  // ====================================================
+  selectInstituto.addEventListener("change", function () {
 
-    if (!institutos[valor]) return;
+    const inst = datosInstitutos[this.value];
 
-    institutos[valor].forEach(inst => {
-      const option = document.createElement("option");
-      option.value = inst;
-      option.textContent = inst;
-      selectInstituto.appendChild(option);
-    });
+    if (!inst) return;
+
+    inputLocalidad.value = inst.localidad;
+    inputComunidad.value = inst.comunidad;
   });
 
 });
