@@ -225,12 +225,16 @@
             GRADO
             <div>
               <label class="block mb-1 text-sm text-gray-300">Nombre del curso o grado FP</label>
-              <input name="NomGradoCurso" type="text" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Ej: 2º Bachillerato, Telecomunicaciones">
+              <select id="grado" name="NomGradoCurso" class="w-full p-3 rounded-lg bg-white text-black">
+                <option value="">Selecciona un grado</option>
+              </select>
             </div>
           
             <div>
               <label class="block mb-1 text-sm text-gray-300">Nivel (Solo si FPGS o FPGM)</label>
-              <input name="NivelGrado" type="text" class="w-full p-3 rounded-lg bg-white text-black" placeholder="Ej: Grado superior">
+              <select id="nivel" name="NivelGrado" class="w-full p-3 rounded-lg bg-white text-black">
+                <option value="">Selecciona un nivel</option>
+              </select>
             </div>
           
           </div> <br>
