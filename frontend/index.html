@@ -38,7 +38,7 @@
     <!-- =============NAVEGACION============ -->
     <nav class="flex gap-6 text-blue-600 font-medium">
       <a href="#" data-target="inicio" class="nav-link hover:text-red-300 hover:font-bold">Inicio</a>
-      <a href="#" data-target="formulario" class="nav-link hover:text-red-300 hover:font-bold">Sercicios</a>
+      <a href="#" data-target="servicios" class="nav-link hover:text-red-300 hover:font-bold">Sercicios</a>
       <a href="#" data-target="contacto" class="nav-link hover:text-red-300 hover:font-bold">Contacto</a>
     </nav>
 
@@ -280,55 +280,92 @@
   <!-- ===================================================== -->
   <!-- --------MAIN_3 (SERVICIOS_SCROLL SOLO AQUÍ)----- -->
   <!-- ===================================================== -->
-  <main id="servicios" class="hidden flex-1 overflow-y-auto p-6">
+  <main id="servicios" class="hidden flex-1 overflow-y-auto p-6 flex flex-col">
 
-    <!-- ============ TÍTULO 3 ============== -->
-
-    <div class="rounded-lg shadow-sm flex justify-between items-center">
+    <!-- TÍTULO -->
+    <!-- <div class="rounded-lg shadow-sm flex justify-between items-center">
       <h1 class="text-3xl md:text-4xl text-white" style="font-family: 'Luckiest Guy';">
-        DATE UNA OPORTUNIDA. . .
+        DATE UNA OPORTUNIDAD...
       </h1>
 
-      <a href="#" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-blue-700 hover:scale-105 transition-all duration-300">
-        Rellenar formulario de viaje
-      </a>
-    </div>
+      <button data-target="formulario"
+        class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-blue-700 hover:scale-105 transition-all duration-300">
+        Rellenar formulario
+      </button>
+    </div> -->
 
-    <!-- ============BUSCADOR============== -->
-    <div class="w-full max-w-md mx-auto mt-10">
+    <!-- 🔥 CONTENIDO CENTRADO -->
+    <div class="flex-1 flex items-center justify-center text-center">
 
-      <div class="relative">
-        <input type="text" placeholder="Buscar..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-300" />
+      <div class="max-w-2xl bg-black/70 p-8 rounded-2xl shadow-lg">
+
+        <h2 class="text-2xl md:text-3xl text-blue-400 mb-4 font-bold">
+          Tu futuro empieza aquí
+        </h2>
+
+        <p class="text-white text-lg leading-relaxed">
+          Este proceso no es solo un formulario. Es el primer paso hacia una experiencia que puede cambiar tu vida.
+          Elegir tu destino, tu formación y tu camino profesional es una decisión importante.
+        </p>
+
+        <p class="text-gray-300 mt-4">
+          En Xenia Dreams te ayudamos a conectar con oportunidades reales, mejorar tu formación y vivir una experiencia internacional única.
+        </p>
+
+        <button data-target="lista"
+          class="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition-all duration-300 hover:scale-105">
+          Ver lista de espera
+        </button>
+
       </div>
 
     </div>
 
-    <!-- ================CONTENIDO======================= -->
-    <section class="p-6 ">
+  </main>  <!-- FIN DEL MAIN 3 -->
+  <!-- ===================================================== -->
+  <!-- --------MAIN_4 TABLA QUE MUESTRA LOS DEATOS (SERVICIOS_SCROLL SOLO AQUÍ)----- -->
+  <!-- ===================================================== ------------------------------>
 
-      <div class="flex justify-center gap-10">
-        <a href="https://www.hotelpuertadebilbao.com/" target="_blank">
-          <img src="imagenes/pais_vasco.jpg" class=" w-80 object-cover rounded-lg border-2 border-transparent 
-            hover:border-blue-500 transition-all duration-300 animate-float" />
-        </a>
-        
-        <a href="https://fptxurdinaga.eus/" target="_blank">
-          <img src="imagenes/estudiante.jpg" class="w-80 object-cover rounded-lg border-2 border-transparent 
-            hover:border-blue-500 transition-all duration-300 animate-float" />
-        </a>
-        
-        <a href="https://www.marriott.com/es/default.mi" target="_blank">
-          <img src="imagenes/madrid.jpg" class="w-80 object-cover rounded-lg border-2 border-transparent 
-            hover:border-blue-500 transition-all duration-300 animate-float" />
-        </a>
-        
+  <main id="lista" class="hidden flex-1 overflow-y-auto p-6 flex flex-col">
+
+    <!-- TÍTULO -->
+    <div class="rounded-lg shadow-sm flex justify-between items-center mb-6">
+      <h1 class="text-3xl text-white font-bold">
+        Lista de solicitudes
+      </h1>
+
+      <button data-target="formulario"
+        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+        Volver
+      </button>
+    </div>
+
+    <!-- TABLA CENTRADA -->
+    <div class="flex-1 flex justify-center">
+
+      <div class="w-full max-w-4xl bg-white/90 p-4 rounded-lg shadow-lg">
+
+        <table class="w-full text-left border">
+          <thead class="bg-blue-600 text-white">
+            <tr>
+              <th class="p-2">Nombre</th>
+              <th class="p-2">Apellidos</th>
+              <th class="p-2">Teléfono</th>
+              <th class="p-2">Curso</th>
+              <th class="p-2">Estado</th>
+            </tr>
+          </thead>
+
+          <tbody id="tablaSolicitudes">
+            <!-- JS mete datos aquí -->
+          </tbody>
+        </table>
+
       </div>
 
-    </section>
+    </div>
 
-  </main>   <!-- FIN DEL MAIN 3 -->
-
-
+  </main>
 
 
   <!-- ===================================================== -->

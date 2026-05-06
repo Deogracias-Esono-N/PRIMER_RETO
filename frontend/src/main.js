@@ -44,6 +44,11 @@ function cambiarVista(id) {
     cargarInstitutos();
     cargarGrados(); 
   }
+
+  if (id === "lista") {
+    mostrarSolicitudes();
+  }
+
 }
 
 
@@ -212,6 +217,77 @@ async function cargarInstitutos() {
     inputLocalidad.value = seleccionado.Localidad;
     inputComunidad.value = seleccionado.Comunidad;
   };
+}
+
+// =====================================================
+// MOSTRAR TABLA
+// =====================================================
+
+async function mostrarSolicitudes() {
+
+  const tabla = document.getElementById("tablaSolicitudes");
+
+  if (!tabla) return;
+
+  console.log("📡 cargando solicitudes...");
+
+  const res = await fetch("http://localhost:9999/api/getmostrar.php");
+  const data = await res.json();
+
+  console.log("DATA SOLICITUDES:", data);
+
+  tabla.innerHTML = "";
+
+  data.forEach(item => {
+  const fila = document.createElement("tr");
+
+  fila.innerHTML = `
+    <td class="p-2">${item.Nombre}</td>
+    <td class="p-2">${item.Apellidos}</td>
+    <td class="p-2">${item.Tel}</td>
+    <td class="p-2">${item.CursoInicio} - ${item.CursoFin}</td>
+    <td class="p-2">${item.Estado}</td>
+
+    <td class="p-2">
+      <button class="btn-eliminar bg-red-600 text-white px-3 py-1 rounded">
+        Eliminar
+      </button>
+    </td>
+  `;
+
+  // 🔥 aquí enganchas el botón después de crearlo
+  const btn = fila.querySelector(".btn-eliminar");
+
+  btn.addEventListener("click", () => {
+    eliminarEstudiante(item.CodEstudiante);
+  });
+
+  tabla.appendChild(fila);
+});
+}
+
+// =====================================================
+// ELIMINAR ESTUDIANTE
+// =====================================================
+
+async function eliminarEstudiante(id) {
+
+  if (!confirm("¿Seguro que quieres eliminar este estudiante?")) return;
+
+  const res = await fetch("http://localhost:9999/api/geteliminar.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ CodEstudiante: id })
+  });
+
+  const data = await res.json();
+
+  if (data.ok) {
+    alert("Eliminado correctamente");
+    mostrarSolicitudes(); // recarga tabla
+  } else {
+    alert("Error al eliminar");
+  }
 }
 // =====================================================
 // INIT GENERAL (ESTO ES LO CLAVE)
