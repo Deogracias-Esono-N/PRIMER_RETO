@@ -1,3 +1,5 @@
+
+let modoVista = "usuario";
 // =====================================================
 // CSS
 // =====================================================
@@ -12,6 +14,10 @@ function initDropdown() {
   const menu = document.getElementById("menu");
 
   if (!btn || !menu) return;
+
+  // evitar duplicar listeners (CLAVE en SPA)
+  if (btn.dataset.init === "true") return;
+  btn.dataset.init = "true";
 
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -39,11 +45,12 @@ function cambiarVista(id) {
 
   vista.classList.remove("hidden");
 
-  // 🔥 CARGA SOLO CUANDO ENTRAS AL FORMULARIO
+  // CARGA SOLO CUANDO ENTRAS AL FORMULARIO
   if (id === "formulario") {
     cargarInstitutos();
     cargarGrados(); 
   }
+
 
   if (id === "lista") {
     mostrarSolicitudes();
@@ -53,22 +60,79 @@ function cambiarVista(id) {
 
 
 // =====================================================
-// NAVEGACIÓN (IMPORTANTE FIX)
+// NAVEGACIÓN
 // =====================================================
 function initNavegacion() {
-  const elementos = document.querySelectorAll("[data-target]");
+  document.addEventListener("click", (e) => {
 
-  elementos.forEach(el => {
-    el.addEventListener("click", (e) => {
-      e.preventDefault();
+    const target = e.target.closest("[data-target]");
+    if (!target) return;
 
-      const id = el.getAttribute("data-target");
-      cambiarVista(id);
-    });
+    e.preventDefault();
+
+    const id = target.getAttribute("data-target");
+    const modo = target.getAttribute("data-modo");
+
+    if (modo) {
+      modoVista = modo;
+    }
+
+    cambiarVista(id);
   });
 }
 
+// =====================================================
+// CESION: INICIAR Y CERRAR
+// =====================================================
+function initLoginSimple() {
+  const form = document.getElementById("formLogin");
 
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const usuario = form.usuario.value;
+    const password = form.password.value;
+
+    // credenciales que tú decides
+    const USER_CORRECTO = "admin";
+    const PASSWORD_CORRECTA = "admin123";
+
+    if (usuario === USER_CORRECTO && password === PASSWORD_CORRECTA) {
+
+  alert("Acceso permitido");
+
+  modoVista = "admin";
+
+  localStorage.setItem("login", "true");
+
+  cambiarVista("lista");
+
+} else {
+  alert("Usuario o contraseña incorrectos");
+}
+  });
+}
+
+// -------------------------------------------------------
+
+function initLogout() {
+  const btn = document.getElementById("cerarsesion");
+
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+
+    // borrar sesión
+    localStorage.removeItem("login");
+
+    alert("Sesión cerrada");
+
+    // volver a inicio o login
+    cambiarVista("inicio");
+  });
+}
 // =====================================================
 // FORMULARIO
 // =====================================================
@@ -82,9 +146,9 @@ function initFormulario() {
 
     try {
 
-      // 🔥 AQUÍ EMPIEZA TU NUEVO FLUJO
+      // AQUÍ EMPIEZA TU NUEVO FLUJO
 
-      // 1️⃣ estudiante
+      // estudiante
       const resEst = await fetch("http://localhost:9999/api/postestudiante.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -102,7 +166,7 @@ function initFormulario() {
 
       console.log("ID estudiante:", idEstudiante);
 
-      // 2️⃣ solicitud
+      // solicitud
       const resSol = await fetch("http://localhost:9999/api/postsolicitud.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -135,7 +199,7 @@ async function cargarGrados() {
   const selectGrado = document.getElementById("grado");
   const selectNivel = document.getElementById("nivel");
 
-  console.log("📡 cargando grados...");
+  console.log("cargando grados...");
 
   if (!selectGrado || !selectNivel) return;
 
@@ -186,7 +250,7 @@ async function cargarInstitutos() {
 
   if (!selectInstituto || !inputLocalidad || !inputComunidad) return;
 
-  console.log("📡 cargando institutos...");
+  console.log("cargando institutos...");
 
   const res = await fetch("http://localhost:9999/api/getinstitutos.php");
 
@@ -225,47 +289,75 @@ async function cargarInstitutos() {
 
 async function mostrarSolicitudes() {
 
+  // 1. Buscar la tabla en el HTML
   const tabla = document.getElementById("tablaSolicitudes");
-
   if (!tabla) return;
 
-  console.log("📡 cargando solicitudes...");
+  try {
+    // 2. Pedir datos al backend
+    const res = await fetch("http://localhost:9999/api/getmostrar.php");
+    const response = await res.json();
 
-  const res = await fetch("http://localhost:9999/api/getmostrar.php");
-  const data = await res.json();
+    const data = response.solicitudes || [];
+    const total = response.totalExpedientes || 0;
 
-  console.log("DATA SOLICITUDES:", data);
+// limpiar tabla
+tabla.innerHTML = "";
 
-  tabla.innerHTML = "";
+// mostrar total
+const totalHTML = document.getElementById("numExpedientes");
 
-  data.forEach(item => {
-  const fila = document.createElement("tr");
-
-  fila.innerHTML = `
-    <td class="p-2">${item.Nombre}</td>
-    <td class="p-2">${item.Apellidos}</td>
-    <td class="p-2">${item.Tel}</td>
-    <td class="p-2">${item.CursoInicio} - ${item.CursoFin}</td>
-    <td class="p-2">${item.Estado}</td>
-
-    <td class="p-2">
-      <button class="btn-eliminar bg-red-600 text-white px-3 py-1 rounded">
-        Eliminar
-      </button>
-    </td>
-  `;
-
-  // 🔥 aquí enganchas el botón después de crearlo
-  const btn = fila.querySelector(".btn-eliminar");
-
-  btn.addEventListener("click", () => {
-    eliminarEstudiante(item.CodEstudiante);
-  });
-
-  tabla.appendChild(fila);
-});
+if (totalHTML && total !== undefined) {
+  totalHTML.textContent = `Número de expedientes: ${total}`;
 }
 
+    // 5. Limpiar la tabla antes de pintar
+    tabla.innerHTML = "";
+
+    // 6. Recorrer cada solicitud y crear una fila
+    data.forEach(item => {
+
+      const fila = document.createElement("tr");
+
+      fila.innerHTML = `
+        <td class="p-2">${item.Nombre}</td>
+        <td class="p-2">${item.Apellidos}</td>
+        <td class="p-2">${item.Tel}</td>
+        <td class="p-2">${item.CursoInicio} - ${item.CursoFin}</td>
+        <td class="p-2">${item.Estado}</td>
+
+        ${
+          modoVista === "admin"
+            ? `<td class="p-2">
+                 <button class="btn-eliminar bg-red-600 text-white px-3 py-1 rounded">
+                   Eliminar
+                 </button>
+               </td>`
+            : ""
+        }
+      `;
+
+      // 7. Solo admin puede eliminar
+      if (modoVista === "admin") {
+        const btn = fila.querySelector(".btn-eliminar");
+
+        if (btn) {
+          btn.addEventListener("click", () => {
+            eliminarEstudiante(item.CodEstudiante);
+          });
+        }
+      }
+
+      // 8. Añadir fila a la tabla
+      tabla.appendChild(fila);
+    });
+
+  } catch (error) {
+
+    // Si algo falla, lo mostramos en consola
+    console.error("Error cargando solicitudes:", error);
+  }
+}
 // =====================================================
 // ELIMINAR ESTUDIANTE
 // =====================================================
@@ -289,6 +381,7 @@ async function eliminarEstudiante(id) {
     alert("Error al eliminar");
   }
 }
+
 // =====================================================
 // INIT GENERAL (ESTO ES LO CLAVE)
 // =====================================================
@@ -296,6 +389,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initDropdown();
   initFormulario();
   initNavegacion();
+  initLoginSimple();
+  initLogout();
 
   console.log("Frontend listo 🚀");
 });

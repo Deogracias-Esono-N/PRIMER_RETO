@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="imagenes/icono.png">
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
     <script type="module" src="/src/main.js" defer></script>
@@ -48,8 +49,7 @@
       <button id="perfilBtn"
         class="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-white/10 text-black">
 
-        <img src="imagenes/agregar-usuario.png"
-             class="h-9 w-9 rounded-full border" />
+        <img src="imagenes/agregar-usuario.png" class="h-9 w-9 rounded-full border" />
 
         <span class="text-sm">Perfil</span>
         <span>▼</span>
@@ -57,19 +57,16 @@
       </button>
 
       <!-- DROPDOWN -->
-      <div id="menu"
-        class="hidden absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-20">
-
+      <div id="menu" class="hidden absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-20">
         <a href="#" class="block px-4 py-2 hover:bg-green-700 hover:text-white">Temas</a>
-        <a href="#" class="block px-4 py-2 hover:bg-green-700 hover:text-white">Iniciar Sesión</a>
-        <a href="#" class="block px-4 py-2 hover:bg-green-700 hover:text-white">Registro</a>
-
+        <a href="#" data-target="login" class="block px-4 py-2 hover:bg-green-700 hover:text-white">Iniciar Sesión</a>
+        <a href="#" data-target="registro"  class="block px-4 py-2 hover:bg-green-700 hover:text-white">Registro</a>
+        <a href="#" id="cerarsesion" class="block px-4 py-2 hover:bg-green-700 hover:text-white">Cerrar sesión</a>
       </div>
 
     </div>
 
   </header>
-
   <!-- ===================================================== -->
   <!-- ----------------MAIN_1 (INICIO_SCROLL SOLO AQUÍ)-------------- -->
   <!-- ===================================================== -->
@@ -117,6 +114,54 @@
         
       </div>
 
+    </section>
+
+
+    <!-- ============ CENTROS EDUCATIVOS ============== -->
+    <section class="flex items-center justify-center min-h-[70vh]">
+    
+      <!-- CUADRO GRANDE -->
+      <div class="bg-black/60 p-6 rounded-2xl shadow-xl">
+      
+        <!-- GRID 2x2 -->
+        <div class="grid grid-cols-2 gap-6">
+        
+          <!-- ITEM 1 -->
+          <a href="https://ciclosformativosfp.com/centro-formacion-BOTIKAZAR-BHI-3255" target="_blank" class="group">
+            <img src="imagenes/botikazar.jpg"
+              class="w-60 h-40 object-cover rounded-lg transition-all duration-300 
+              group-hover:scale-105 group-hover:shadow-lg" />
+            <p class="text-center text-white mt-2">CIFP BUTIKAZAR BHI</p>
+          </a>
+        
+          <!-- ITEM 2 -->
+          <a href="https://site.educa.madrid.org/ies.alonsodeavellan.alcala/" target="_blank" class="group">
+            <img src="imagenes/avellaneda.jpeg"
+              class="w-60 h-40 object-cover rounded-lg transition-all duration-300 
+              group-hover:scale-105 group-hover:shadow-lg" />
+            <p class="text-center text-white mt-2">IES ALONSO DE AVELLANEDA</p>
+          </a>
+        
+          <!-- ITEM 3 -->
+          <a href="https://iesmachado.org/web%20insti/index_v10.php/" target="_blank" class="group">
+            <img src="imagenes/machado.jpg"
+              class="w-60 h-40 object-cover rounded-lg transition-all duration-300 
+              group-hover:scale-105 group-hover:shadow-lg" />
+            <p class="text-center text-white mt-2">IES ANTONIO MACHADO</p>
+          </a>
+        
+          <!-- ITEM 4 -->
+          <a href="https://www.iesvirgendelcarmen.com//" target="_blank" class="group">
+            <img src="imagenes/virgen_carmen_jaen.webp"
+              class="w-60 h-40 object-cover rounded-lg transition-all duration-300 
+              group-hover:scale-105 group-hover:shadow-lg" />
+            <p class="text-center text-white mt-2">IES VIRJEN DEL CARMEN</p>
+          </a>
+        
+        </div>
+      
+      </div>
+    
     </section>
 
   </main>   <!-- FIN DEL MAIN 1 -->
@@ -270,6 +315,13 @@
             Guardar estudiante
           </button>
         </div>
+
+        <!-- BOTÓN -->
+        <div class="pt-6">
+            <button data-target="lista" data-modo="usuario" type="button" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-all duration-300 hover:scale-105">
+            Ver lista
+          </button>
+        </div>
       
       </form>
     
@@ -294,7 +346,7 @@
       </button>
     </div> -->
 
-    <!-- 🔥 CONTENIDO CENTRADO -->
+    <!-- ONTENIDO CENTRADO -->
     <div class="flex-1 flex items-center justify-center text-center">
 
       <div class="max-w-2xl bg-black/70 p-8 rounded-2xl shadow-lg">
@@ -312,9 +364,9 @@
           En Xenia Dreams te ayudamos a conectar con oportunidades reales, mejorar tu formación y vivir una experiencia internacional única.
         </p>
 
-        <button data-target="lista"
-          class="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition-all duration-300 hover:scale-105">
-          Ver lista de espera
+        <!-- lista -->
+        <button data-target="login" class="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition-all duration-300 hover:scale-105">
+          Ver lista modo admin
         </button>
 
       </div>
@@ -334,7 +386,7 @@
         Lista de solicitudes
       </h1>
 
-      <button data-target="formulario"
+      <button data-target="servicios"
         class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
         Volver
       </button>
@@ -355,7 +407,9 @@
               <th class="p-2">Estado</th>
             </tr>
           </thead>
-
+          <div>
+            <h2 id="numExpedientes" class="text-red-400 font-bold mb-4"></h2>
+          </div>
           <tbody id="tablaSolicitudes">
             <!-- JS mete datos aquí -->
           </tbody>
@@ -367,6 +421,93 @@
 
   </main>
 
+  <!-- ===================================================== -->
+  <!-- MAIN 5 LOGIN -->
+  <!-- ===================================================== -->
+
+  <main id="login" class="hidden flex-1 overflow-y-auto p-6">
+
+    <!-- CENTRADO -->
+    <div class="flex items-center justify-center min-h-[80vh]">
+
+      <div class="w-full max-w-md bg-black/70 text-white p-8 rounded-2xl shadow-lg">
+
+        <!-- TÍTULO -->
+        <h1 class="text-3xl font-bold text-center mb-6">
+          Iniciar Sesión
+        </h1>
+
+        <!-- FORMULARIO LOGIN -->
+        <form id="formLogin" class="space-y-4" autocomplete="off">
+
+          <div>
+            <label class="block text-sm mb-1">usuario</label>
+            <input name="usuario" type="text" class="w-full p-3 rounded-lg text-black  bg-amber-200" placeholder="usuario">
+          </div>
+
+          <div>
+            <label class="block text-sm mb-1">Contraseña</label>
+            <input name="password" type="password" class="w-full p-3 rounded-lg text-black  bg-amber-200" placeholder="********">
+          </div>
+
+          <button type="submit"
+            class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition">
+            Entrar
+          </button>
+
+        </form>
+
+        <!-- OPCIONES -->
+        <div class="text-center mt-6 text-sm text-gray-300">
+
+          <p>¿No tienes cuenta?</p>
+
+          <a href="#"
+            class="text-blue-400 hover:underline"
+            data-target="registro">
+            Registrarse
+          </a>
+
+        </div>  <!-- FIN DEL MAIN 5  -->
+
+        
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ===================================================== -->
+  <!-- MAIN 6 REGISTRO -->
+  <!-- ===================================================== -->
+  <main id="registro" class="hidden flex-1 overflow-y-auto p-6">
+
+  <div class="flex items-center justify-center min-h-[80vh]">
+
+    <div class="w-full max-w-md bg-black/70 text-white p-8 rounded-2xl shadow-lg">
+
+      <h1 class="text-3xl font-bold text-center mb-6">
+        Registro
+      </h1>
+
+      <form id="formRegistro" class="space-y-4" autocomplete="off">
+
+        <input name="email" type="email" class="w-full p-3 rounded-lg text-blue-600 bg-amber-200 " placeholder="Email">
+
+        <input name="password" type="password" class="w-full p-3 rounded-lg text-blue-600  bg-amber-200 " placeholder="Contraseña">
+
+        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold">
+          Crear cuenta
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</main>
 
   <!-- ===================================================== -->
   <!-- FOOTER -->

@@ -14,7 +14,7 @@ require_once("conexion.php");
 
 $sql = "
 SELECT
-  e.CodEstudiante, # para poser eliminar
+  e.CodEstudiante,
   e.Nombre,
   e.Apellidos,
   e.Tel,
@@ -34,7 +34,20 @@ while ($row = $result->fetch_assoc()) {
   $datos[] = $row;
 }
 
-echo json_encode($datos);
+// 🔥 llamar procedimiento
+$resumen = $conn->query("CALL ContarExpedientes()");
+
+$totalExpedientes = 0;
+
+if ($filaResumen = $resumen->fetch_assoc()) {
+  $totalExpedientes = $filaResumen["NumExpedientes"];
+}
+
+// devolver TODO junto
+echo json_encode([
+  "solicitudes" => $datos,
+  "totalExpedientes" => $totalExpedientes
+]);
 
 $conn->close();
 ?>

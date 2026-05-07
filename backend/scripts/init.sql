@@ -65,7 +65,7 @@ FROM localidad
 -- =====================================
 -- INSTITUTO
 -- =====================================
-CREATE TABLE instituto (
+CREATE TABLE institute (
   CodInst VARCHAR(3) PRIMARY KEY,
   Nombre VARCHAR(150) NOT NULL,
   Email VARCHAR(150),
@@ -77,7 +77,7 @@ CREATE TABLE instituto (
 INSERT INTO instituto (CodInst, Nombre, Email, Tel, CodLoc) VALUES
 
 -- =====================================================
--- 🏔️ PAÍS VASCO (PV)
+-- PAÍS VASCO (PV)
 -- =====================================================
 ('UMU', 'IES Miguel de Unamuno', 'info@unamuno.com', '944000000', 'BI'),
 ('BOT', 'IES Botikazar', 'info@botikazar.com', '944111111', 'BI'),
@@ -86,7 +86,7 @@ INSERT INTO instituto (CodInst, Nombre, Email, Tel, CodLoc) VALUES
 ('ART', 'IES Artaza-Romo', 'info@artaza.com', '944333333', 'GE'),
 
 -- =====================================================
--- 🏙️ MADRID (MD)
+-- MADRID (MD)
 -- =====================================================
 ('AVA', 'IES Alonso de Avellaneda', 'info@avellaneda.com', '910111111', 'AL'),
 ('MCH', 'IES Antonio Machado', 'info@machado.com', '910222222', 'AL'),
@@ -95,7 +95,7 @@ INSERT INTO instituto (CodInst, Nombre, Email, Tel, CodLoc) VALUES
 ('VIC', 'IES Valle Inclán', 'info@valleinclan.com', '910333333', 'TR'),
 
 -- =====================================================
--- 🌊 COMUNITAT VALENCIANA (VC)
+-- COMUNITAT VALENCIANA (VC)
 -- =====================================================
 ('MAR', 'IES La Marxadella', 'info@marxadella.com', '960000001', 'VA'),
 ('SOR', 'IES Sorolla', 'info@sorolla.com', '960000002', 'VA'),
@@ -104,7 +104,7 @@ INSERT INTO instituto (CodInst, Nombre, Email, Tel, CodLoc) VALUES
 ('SER', 'IES Serra Perenxisa', 'info@serra.com', '960000004', 'TO'),
 
 -- =====================================================
--- 🌄 ANDALUCÍA (AN)
+-- ANDALUCÍA (AN)
 -- =====================================================
 ('VIR', 'IES Virgen del Carmen', 'info@virgencar.com', '953000000', 'JA'),
 ('AUR', 'IES Auringis', 'info@auringis.com', '953111111', 'JA');
@@ -127,30 +127,30 @@ CREATE TABLE grado (
 INSERT INTO grado (CodGrado, Nombre, Nivel) VALUES
 
 -- =====================================================
--- 🎓 BACHILLERATO / SECUNDARIA
+-- BACHILLERATO / SECUNDARIA
 -- =====================================================
 ('BCH', 'Bachillerato (Secundaria)', 'Bachillerato'),
 
 -- =====================================================
--- 💻 FP GRADO MEDIO - INFORMÁTICA
+-- FP GRADO MEDIO - INFORMÁTICA
 -- =====================================================
 ('SMR', 'Sistemas Microinformáticos y Redes (Grado Medio)', 'FP Grado Medio'),
 ('OFC', 'Ofimática y Administración Digital (Grado Medio)', 'FP Grado Medio'),
 
 -- =====================================================
--- 📡 FP GRADO MEDIO - COMUNICACIONES
+-- FP GRADO MEDIO - COMUNICACIONES
 -- =====================================================
 ('ELE', 'Instalaciones de Telecomunicaciones (Grado Medio)', 'FP Grado Medio'),
 ('RED', 'Redes de Comunicación Básicas (Grado Medio)', 'FP Grado Medio'),
 
 -- =====================================================
--- 📊 FP GRADO MEDIO - ADMINISTRACIÓN Y SERVICIOS
+-- FP GRADO MEDIO - ADMINISTRACIÓN Y SERVICIOS
 -- =====================================================
 ('ADM', 'Gestión Administrativa (Grado Medio)', 'FP Grado Medio'),
 ('COM', 'Actividades Comerciales (Grado Medio)', 'FP Grado Medio'),
 
 -- =====================================================
--- 💻 FP GRADO SUPERIOR - INFORMÁTICA
+-- FP GRADO SUPERIOR - INFORMÁTICA
 -- =====================================================
 ('DAW', 'Desarrollo de Aplicaciones Web (Grado Superior)', 'FP Grado Superior'),
 ('DAM', 'Desarrollo de Aplicaciones Multiplataforma (Grado Superior)', 'FP Grado Superior'),
@@ -158,13 +158,13 @@ INSERT INTO grado (CodGrado, Nombre, Nivel) VALUES
 ('SEG', 'Ciberseguridad en Entornos TIC (Grado Superior)', 'FP Grado Superior'),
 
 -- =====================================================
--- 📡 FP GRADO SUPERIOR - COMUNICACIONES
+-- FP GRADO SUPERIOR - COMUNICACIONES
 -- =====================================================
 ('TEL', 'Telecomunicaciones (Grado Superior)', 'FP Grado Superior'),
 ('GRD', 'Gestión de Redes Avanzadas (Grado Superior)', 'FP Grado Superior'),
 
 -- =====================================================
--- 📈 FP GRADO SUPERIOR - MÁS DEMANDADOS
+-- FP GRADO SUPERIOR - MÁS DEMANDADOS
 -- =====================================================
 ('RHU', 'Recursos Humanos (Grado Superior)', 'FP Grado Superior'),
 ('MKT', 'Marketing y Publicidad Digital (Grado Superior)', 'FP Grado Superior'),
@@ -180,7 +180,7 @@ FROM grado
 -- =====================================
 -- ESTUDIANTE
 -- =====================================
-CREATE TABLE estudiante (
+CREATE TABLE estudianto (
   CodEstudiante INT AUTO_INCREMENT PRIMARY KEY,
   Nombre VARCHAR(30) NOT NULL,
   Apellidos VARCHAR(40) NOT NULL,
@@ -212,6 +212,22 @@ CREATE TABLE solicitud (
   FOREIGN KEY (CodGrado) REFERENCES grado(CodGrado) ON DELETE RESTRICT
 );
 
+-- =====================================
+-- PROCEDIMIENTO QUE CUENTA SOLICITUDES
+-- =====================================
+DELIMITER //
+
+CREATE PROCEDURE ContarExpedientes()
+BEGIN
+
+  SELECT COUNT(*) AS NumExpedientes
+  FROM solicitud;
+
+END //
+
+DELIMITER ;
+
+CALL ContarExpedientes();
 
 
 
