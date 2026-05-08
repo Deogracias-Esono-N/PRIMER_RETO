@@ -1,5 +1,6 @@
 <?php
 
+//conecion a la base de datos.
 $host = getenv("DB_HOST");
 $user = getenv("DB_USER");
 $pass = getenv("DB_PASS");
