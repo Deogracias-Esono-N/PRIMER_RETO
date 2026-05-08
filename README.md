@@ -109,18 +109,18 @@ Pantalla principal donde el estudiante introduce sus datos para solicitar inform
 ### 📤 Envío de datos (Frontend → Backend)
 El momento en el que JavaScript intercepta el formulario y envía los datos al backend mediante `fetch()`.
 
-![Fetch request](./images/fetch.png)
+![Fetch request](./imagenesReadme/fetch.avif)
 
 ---
 
 ### 🧠 Procesamiento en el backend (PHP + Apache)
 El backend recibe la petición, procesa los datos y utiliza `conexion.php` para conectar con la base de datos.
 
-![Backend PHP](./images/backend.png)
+![Backend PHP](./imagenesReadme/backend.avif)
 
 ---
 
 ### ☁️ Resultado final en base de datos (AWS AuroraDB)
 Los datos del estudiante quedan almacenados correctamente en la base de datos.
 
-![Base de datos](./images/database.png)
+![Base de datos](./imagenesReadme/basedatos.avif)
