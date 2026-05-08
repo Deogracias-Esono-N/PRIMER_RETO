@@ -6,16 +6,14 @@ Backend PHP (docker-apache) → usa conexion.php
 conexion.php → conecta a AWS
 AWS → guarda datos
 
-1. Usuario pulsa "Guardar estudiante"
+1. Usuario relena formulario, pulsa "Guardar estudiante"
 2. JS intercepta submit (preventDefault)
 3. JS hace fetch a PHP
-4. PHP usa db_conector.php
-5. db_conector conecta a AuroraDB
+4. PHP usa conexion.php
+5. conexion.php conecta a AuroraDB AWS
 6. Se guarda el alumno
 7. PHP responde JSON
 8. JS muestra alert
-
-
 
 
 
