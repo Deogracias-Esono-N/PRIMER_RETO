@@ -24,5 +24,8 @@
 - 5-05-2026: Pruba de conexion frontend-backend correcta (guarda correctamente).
 - 6-05-2026: backend mostrar y eliminar.
 - 7-05-2026: solo admin puede eliminar.
-- 6-05-2026: comentarios.
+- 8-05-2026: comentarios.
+
+
+- 9-05-2026: archivo readme y sus correspondientes imagenes.
 
