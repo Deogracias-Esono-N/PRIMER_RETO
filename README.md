@@ -102,7 +102,7 @@ A continuación se muestran las capturas más importantes del flujo de la aplica
 ### 🧑‍🎓 Formulario de registro
 Pantalla principal donde el estudiante introduce sus datos para solicitar información o plaza.
 
-![Formulario de estudiante](./imagesReadme/formulario.avif)
+![Formulario de estudiante](./imagenesReadme/formulario.avif)
 
 ---
 
