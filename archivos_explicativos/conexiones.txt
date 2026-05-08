@@ -1,9 +1,9 @@
 ================ESTRUCTURA==================
 
 Frontend → llama URL (fetch)
-PHP → recibe datos
-PHP → usa db_conector.php
-db_conector.php → conecta a AWS
+Backend PHP (docker-apache) → recibe datos
+Backend PHP (docker-apache) → usa conexion.php
+conexion.php → conecta a AWS
 AWS → guarda datos
 
 1. Usuario pulsa "Guardar estudiante"
