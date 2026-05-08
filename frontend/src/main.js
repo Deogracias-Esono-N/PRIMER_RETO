@@ -10,21 +10,29 @@ import "./style.css";
 // PERFIL DROPDOWN
 // =====================================================
 function initDropdown() {
+  // Botón que abre/cierra el menú de perfil
   const btn = document.getElementById("perfilBtn");
+   // Menú desplegable
   const menu = document.getElementById("menu");
 
-  if (!btn || !menu) return;
+  if (!btn || !menu) return; // Si no existen los elementos, no hace nada
 
-  // evitar duplicar listeners (CLAVE en SPA)
+  // Evita duplicar eventos si la función se ejecuta más de una vez (SPA)
   if (btn.dataset.init === "true") return;
   btn.dataset.init = "true";
 
+  // Evento click en el botón del perfil
   btn.addEventListener("click", (e) => {
-    e.stopPropagation();
+    e.stopPropagation(); // evita que el click se propague al documento
+
+    // Alterna mostrar/ocultar el menú
     menu.classList.toggle("hidden");
   });
 
+  // Cierra el menú si haces click fuera de él
   document.addEventListener("click", (e) => {
+
+    // Si el click NO es dentro del menú ni del botón
     if (!menu.contains(e.target) && !btn.contains(e.target)) {
       menu.classList.add("hidden");
     }

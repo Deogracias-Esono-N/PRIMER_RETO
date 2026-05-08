@@ -11,6 +11,7 @@
 - 6-05-2026: configuracion del pane de logeo (solo se puede eliminar haciendo login).
 - 6-05-2026: usuario solo puede ver la lista.
 - 7-05-2026: solo admin puede ver eliminar.
+- 8-05-2026: Comentarios.
 
 
 ## Backend
